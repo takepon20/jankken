@@ -1,46 +1,62 @@
-// btn1の変数を宣言して、分かりやすいコードに
-const btn1 = document.querySelector("#btn1");
-const imagelist = [    
-    "./img/youA.jpg",
-    "./img/youB.jpg",
-    "./img/youC.jpg",
-];
+// 対戦相手を決定する
+  //画像の定義
+  var imageArray = ["./img/youA.jpg","./img/youB.jpg","./img/youC.jpg","./img/youD.jpg","./img/youE.jpg","./img/youF.jpg"];
+  var slideshowInterval;//スライドショーのタイマー変数
+  var imageIndex = 0;//これはどういうこと？？？
 
-// btn1を押すと関数を実行する
-btn1.onclick = function(){
-    //ランダムなインデックスを生成する
-    const randomIndex = Math.floor(Math.random()*imagelist.length);
-    console.log("エラー");
+  //スライドショーをスタート
+  const btn1 = document.querySelector("#btn1");
+  btn1.onclick = function(){
+    slideshowInterval = setInterval(function () {
+    document.querySelector("#vs_you").src = imageArray[imageIndex];
+    imageIndex = Math.floor(Math.random()*imageArray.length);
+   },100); // 画像を切り替える
+   document.querySelector("#text").innerText = "対戦相手を決定する";
+  };
+  console.log("OK");
+  // スライドショーをストップ
+  // 対戦相手をランダムに決定する
+  const btn2 = document.querySelector("#btn2");
+  btn2.onclick = function(){
+    clearInterval(slideshowInterval);
+    const opponent = Math.floor(Math.random()*6);
+    if(opponent === 0){
+      document.querySelector("#text").innerText = "南斗六聖拳殉星の男　シン";
+      document.querySelector("#vs_you").src = "./img/youA.jpg";
+    }else if(opponent === 1){
+      document.querySelector("#text").innerText = "南斗聖拳最強の男　サウザー";
+      document.querySelector("#vs_you").src = "./img/youB.jpg";
+    }else if(opponent === 2){
+      document.querySelector("#text").innerText = "華麗な技を持つ　トキ";
+      document.querySelector("#vs_you").src = "./img/youC.jpg";
+    }else if(opponent === 3){
+      document.querySelector("#text").innerText = "元斗皇拳の伝承者 金色のファルコ";
+      document.querySelector("#vs_you").src = "./img/youD.jpg";
+    }else if(opponent === 4){
+      document.querySelector("#text").innerText = "世紀末覇者「拳王」 ラオウ";
+      document.querySelector("#vs_you").src = "./img/youE.jpg";
+    }else if(opponent === 5){
+      document.querySelector("#text").innerText = "「おれの名をいってみろ!!」 ジャギ";
+      document.querySelector("#vs_you").src = "./img/youF.jpg";
+    };
+  };
 
-    //ランダムな画像を選択する
-    const randomImage = imagelist[randomIndex];
-    console.log("エラー");
+  console.log("OK");
 
-    //画像を表示する
-    const imageElement = document.querySelector("#you");
-    imageElement.src = randomImage;
-    console.log("エラー");
-};
-
-let btn5 = document.querySelector("#btn5");
-btn5.onclick = function(){
-    location.reload();
-}
-
-// ぐーをクリックして対戦結果をアラートで表示する
-const btn2 = document.querySelector("#btn2");
-btn2.onclick = function(){
+/// ぐーをクリックして対戦結果をアラートで表示する
+const btn3 = document.querySelector("#btn3");
+btn3.onclick = function(){
     mejunkkenimg.src = "./img/guu.jpg";
     const randomJankken = Math.floor(Math.random()*3);
     console.log("エラー");
 
     if(randomJankken === 0){
-        document.querySelector("#result").innerText = "引き分け";
+        document.querySelector("#vs").innerText = "引き分け";
         youjunkkenimg.src = "./img/guu.jpg";
         console.log("エラー");
 
     }else if(randomJankken === 1){
-        document.querySelector("#result").innerText = "勝ち";
+        document.querySelector("#vs").innerText = "勝ち";
         youjunkkenimg.src = "./img/tyoki.jpg";
         console.log("エラー");
 
@@ -53,8 +69,9 @@ btn2.onclick = function(){
         let me_win = document.querySelector("#me_win");
         me_win.appendChild(imgElement_me);
         console.log("エラー");
+
     }else{
-        document.querySelector("#result").innerText = "負け";
+        document.querySelector("#vs").innerText = "負け";
         youjunkkenimg.src = "./img/paa.jpg";
         console.log("エラー");
 
@@ -68,17 +85,17 @@ btn2.onclick = function(){
         you_win.appendChild(imgElement_you);
         console.log("エラー");
     };
-};
+}
 
 // ちょきをクリックして対戦結果をアラートで表示する
-const btn3 = document.querySelector("#btn3");
-btn3.onclick = function(){
+const btn4 = document.querySelector("#btn4");
+btn4.onclick = function(){
     mejunkkenimg.src = "./img/tyoki.jpg";
     const randomJankken = Math.floor(Math.random()*3);
     console.log("エラー");
 
     if(randomJankken === 0){
-        document.querySelector("#result").innerText = "負け";
+        document.querySelector("#vs").innerText = "負け";
         youjunkkenimg.src = "./img/guu.jpg";
         console.log("エラー");
 
@@ -93,12 +110,12 @@ btn3.onclick = function(){
         console.log("エラー");
 
     }else if(randomJankken === 1){
-        document.querySelector("#result").innerText = "引き分け";
+        document.querySelector("#vs").innerText = "引き分け";
         youjunkkenimg.src = "./img/tyoki.jpg";
         console.log("エラー");
 
     }else{
-        document.querySelector("#result").innerText = "勝ち";
+        document.querySelector("#vs").innerText = "勝ち";
         youjunkkenimg.src = "./img/paa.jpg";
         console.log("エラー");
 
@@ -112,16 +129,17 @@ btn3.onclick = function(){
         me_win.appendChild(imgElement_me);
         console.log("エラー");
     };
-};
+}
 
 // ぱーをクリックして対戦結果をアラートで表示する
-btn4.onclick = function(){
+const btn5 = document.querySelector("#btn5");
+btn5.onclick = function(){
     mejunkkenimg.src = "./img/paa.jpg";
     const randomJankken = Math.floor(Math.random()*3);
     console.log("エラー");
 
     if(randomJankken === 0){
-        document.querySelector("#result").innerText = "勝ち";
+        document.querySelector("#vs").innerText = "勝ち";
         youjunkkenimg.src = "./img/guu.jpg";
         console.log("エラー");
 
@@ -136,7 +154,7 @@ btn4.onclick = function(){
         console.log("エラー");
 
     }else if(randomJankken === 1){
-        document.querySelector("#result").innerText = "負け";
+        document.querySelector("#vs").innerText = "負け";
         youjunkkenimg.src = "./img/tyoki.jpg";
         console.log("エラー");
 
@@ -151,8 +169,13 @@ btn4.onclick = function(){
         console.log("エラー");
 
     }else{
-        document.querySelector("#result").innerText = "引き分け";
+        document.querySelector("#vs").innerText = "引き分け";
         youjunkkenimg.src = "./img/paa.jpg";
         console.log("エラー");
     };
-};
+}
+
+let btn6 = document.querySelector("#btn6");
+btn6.onclick = function(){
+    location.reload();
+}

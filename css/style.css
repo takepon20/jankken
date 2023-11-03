@@ -1,82 +1,76 @@
-/* bodyの決定 */
+/* bodyと文字の決定 */
 body{
-    width: 1200px;
+    width: 1000px;
     margin: auto;
     text-align: center;
 }
 
+p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* ボタンの指定 */
 button{
     font-size: 20px;
+    margin: 5px;
+    padding: 5px;
 }
 
-/* 画像のmeとyouの定義と大きさ */
-#me,#you{
-    display: block;
-    padding: 0 50px;
-    width: 250px;
-    height: 250px;
+#btn1,#btn2{
+    width: 120px;
 }
 
-/* meの指定 */
-#mejunkken{
-    position: relative;
-    margin: auto 10px;
-    width: 100px;
-    height: 100px;
+#btn3,#btn4,#btn5{
+    width: 75px;
 }
 
-#mejunkkenimg{
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
- }
-
-/* youの指定 */
-#youjunkken{
-    position: relative;
-    margin: auto 10px;
-    width: 100px;
-    height: 100px;
+#btn6{
+    width: 255px;
 }
 
-#youjunkkenimg{
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
- }
+/* メイン画像の指定 */
+#vs_me,#vs_you{
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+}
 
-
-/* 写真を横並び */
-.wrap1{
+/* 写真の横並び */
+.box1{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
-#btn1,#btn5{
-    width: 162.5px;
-    font-size: 15px;
-    color: aliceblue;
-    margin: 10px;
-    padding: 0 10px;
-    background-color: blue;
+.box2{
+    display: flex;
+    width: 150px;
+    height: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#btn2,#btn3,#btn4{
+#junkkenimg_me{
     width: 100px;
-    font-size: 15px;
-    color: aliceblue;
-    margin: 10px;
-    padding: 0 10px;
-    background: red;
-    
+    height: 100px;
+    align-self: start;
+}
+
+
+#junkkenimg_you{
+    width: 100px;
+    height: 100px;
+    align-self: end;
 }
 
 .wrap2{
     display: flex;
-    width: 1200px;
+    width: 1000px;
 }
 
 #me_win{
