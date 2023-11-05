@@ -164,3 +164,5 @@ let btn6 = document.querySelector("#btn6");
 btn6.onclick = function(){
     location.reload();
 }
+
+// ぎっとはぶへ
