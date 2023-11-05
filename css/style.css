@@ -55,32 +55,15 @@ button{
     align-items: center;
 }
 
-#junkkenimg_me{
+#mejunkkenimg{
+    object-fit: cover;
     width: 100px;
     height: 100px;
     align-self: start;
 }
-
-
-#junkkenimg_you{
+#youjunkkenimg{
+    object-fit: cover;
     width: 100px;
     height: 100px;
-    align-self: end;
-}
-
-.wrap2{
-    display: flex;
-    width: 1000px;
-}
-
-#me_win{
-    width: 500px;
-    margin: 20px 50px;
-    text-align: right;
-}
-
-#you_win{
-    width: 500px;
-    margin: 20px 50px;
-    text-align: left;
+    align-self: flex-end;
 }

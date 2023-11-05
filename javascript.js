@@ -1,43 +1,58 @@
-// 対戦相手を決定する
-  //画像の定義
-  var imageArray = ["./img/youA.jpg","./img/youB.jpg","./img/youC.jpg","./img/youD.jpg","./img/youE.jpg","./img/youF.jpg"];
-  var slideshowInterval;//スライドショーのタイマー変数
-  var imageIndex = 0;//これはどういうこと？？？
 
-  //スライドショーをスタート
-  const btn1 = document.querySelector("#btn1");
-  btn1.onclick = function(){
-    slideshowInterval = setInterval(function () {
-    document.querySelector("#vs_you").src = imageArray[imageIndex];
-    imageIndex = Math.floor(Math.random()*imageArray.length);
+// グローバル変数
+let opponent = 0;
+
+// 対戦相手を決定する
+//スライドショーのための変数宣言 
+var imageArray = ["./img/youA.jpg","./img/youB.jpg","./img/youC.jpg","./img/youD.jpg","./img/youE.jpg","./img/youF.jpg"];
+var slideshowInterval;
+var imageIndex = 0;
+
+//スライドショーをスタート
+const btn1 = document.querySelector("#btn1");
+btn1.onclick = function(){
+   document.querySelector("#vs_me").src = "./img/before-hito.jpg";
+   slideshowInterval = setInterval(function () {
+   document.querySelector("#vs_you").src = imageArray[imageIndex];
+   imageIndex = Math.floor(Math.random()*imageArray.length);
    },100); // 画像を切り替える
    document.querySelector("#text").innerText = "対戦相手を決定する";
   };
-  console.log("OK");
-  // スライドショーをストップ
-  // 対戦相手をランダムに決定する
-  const btn2 = document.querySelector("#btn2");
-  btn2.onclick = function(){
-    clearInterval(slideshowInterval);
-    const opponent = Math.floor(Math.random()*6);
-    if(opponent === 0){
+
+ console.log("OK");
+ 
+// スライドショーをストップ
+const btn2 = document.querySelector("#btn2");
+btn2.onclick = function(){
+   clearInterval(slideshowInterval);
+   //グローバル変数に代入
+   opponent = Math.floor(Math.random()*6); 
+   if(opponent === 0){
       document.querySelector("#text").innerText = "南斗六聖拳殉星の男　シン";
       document.querySelector("#vs_you").src = "./img/youA.jpg";
-    }else if(opponent === 1){
+      console.log("OK");
+   }else if(opponent === 1){
       document.querySelector("#text").innerText = "南斗聖拳最強の男　サウザー";
       document.querySelector("#vs_you").src = "./img/youB.jpg";
-    }else if(opponent === 2){
+      console.log("OK");
+   }else if(opponent === 2){
       document.querySelector("#text").innerText = "華麗な技を持つ　トキ";
       document.querySelector("#vs_you").src = "./img/youC.jpg";
-    }else if(opponent === 3){
+      console.log("OK");
+   }else if(opponent === 3){
       document.querySelector("#text").innerText = "元斗皇拳の伝承者 金色のファルコ";
       document.querySelector("#vs_you").src = "./img/youD.jpg";
-    }else if(opponent === 4){
+      console.log("OK");
+   }else if(opponent === 4){
       document.querySelector("#text").innerText = "世紀末覇者「拳王」 ラオウ";
       document.querySelector("#vs_you").src = "./img/youE.jpg";
-    }else if(opponent === 5){
+      document.querySelector("#vs_me").src = "./img/kenvsraou.jpg";
+      console.log("OK");
+   }else if(opponent === 5){
       document.querySelector("#text").innerText = "「おれの名をいってみろ!!」 ジャギ";
       document.querySelector("#vs_you").src = "./img/youF.jpg";
+      document.querySelector("#vs_me").src = "./img/muso.jpg";
+      console.log("OK");
     };
   };
 
@@ -47,133 +62,103 @@
 const btn3 = document.querySelector("#btn3");
 btn3.onclick = function(){
     mejunkkenimg.src = "./img/guu.jpg";
-    const randomJankken = Math.floor(Math.random()*3);
-    console.log("エラー");
-
-    if(randomJankken === 0){
-        document.querySelector("#vs").innerText = "引き分け";
-        youjunkkenimg.src = "./img/guu.jpg";
-        console.log("エラー");
-
-    }else if(randomJankken === 1){
-        document.querySelector("#vs").innerText = "勝ち";
-        youjunkkenimg.src = "./img/tyoki.jpg";
-        console.log("エラー");
-
-        let imgElement_me = document.createElement("img");
-        imgElement_me.src = "./img/win.jpg";
-        imgElement_me.width = 50;
-        imgElement_me.height = 50;
-         console.log("エラー");
-
-        let me_win = document.querySelector("#me_win");
-        me_win.appendChild(imgElement_me);
-        console.log("エラー");
-
-    }else{
-        document.querySelector("#vs").innerText = "負け";
-        youjunkkenimg.src = "./img/paa.jpg";
-        console.log("エラー");
-
-        let imgElement_you = document.createElement("img");
-        imgElement_you.src = "./img/win.jpg";
-        imgElement_you.width = 50;
-        imgElement_you.height = 50;
-        console.log("エラー");
-
-        let you_win = document.querySelector("#you_win");
-        you_win.appendChild(imgElement_you);
-        console.log("エラー");
+    // 対戦相手が0～3の時は、通常じゃんけん処理）
+    if(opponent >= 0 && opponent <= 3){
+         const randomJankken = Math.floor(Math.random()*3);
+         console.log("OK");
+         if(randomJankken === 0){
+              document.querySelector("#vs").innerText = "引き分け";
+              youjunkkenimg.src = "./img/guu.jpg";
+              console.log("OK");
+         }else if(randomJankken === 1){
+              document.querySelector("#vs").innerText = "勝ち";
+              youjunkkenimg.src = "./img/tyoki.jpg";
+              console.log("OK");
+         }else{
+              document.querySelector("#vs").innerText = "負け";
+              youjunkkenimg.src = "./img/paa.jpg";
+              console.log("OK");
+         }
+    // ラオウで絶対勝てない
+    }else if(opponent === 4){
+      document.querySelector("#vs").innerText = "負け";
+      youjunkkenimg.src = "./img/paa.jpg";
+      console.log("ok");
+    // ジャギで勝てる
+    }else if(opponent === 5){
+      document.querySelector("#vs").innerText = "勝ち";
+      youjunkkenimg.src = "./img/tyoki.jpg";
+      console.log("OK");
     };
-}
+};
 
-// ちょきをクリックして対戦結果をアラートで表示する
+//ちょきをクリック
 const btn4 = document.querySelector("#btn4");
 btn4.onclick = function(){
     mejunkkenimg.src = "./img/tyoki.jpg";
-    const randomJankken = Math.floor(Math.random()*3);
-    console.log("エラー");
-
-    if(randomJankken === 0){
-        document.querySelector("#vs").innerText = "負け";
-        youjunkkenimg.src = "./img/guu.jpg";
-        console.log("エラー");
-
-        let imgElement_you = document.createElement("img");
-        imgElement_you.src = "./img/win.jpg";
-        imgElement_you.width = 50;
-        imgElement_you.height = 50;
-        console.log("エラー");
-
-        let you_win = document.querySelector("#you_win");
-        you_win.appendChild(imgElement_you);
-        console.log("エラー");
-
-    }else if(randomJankken === 1){
-        document.querySelector("#vs").innerText = "引き分け";
-        youjunkkenimg.src = "./img/tyoki.jpg";
-        console.log("エラー");
-
-    }else{
-        document.querySelector("#vs").innerText = "勝ち";
-        youjunkkenimg.src = "./img/paa.jpg";
-        console.log("エラー");
-
-        let imgElement_me = document.createElement("img");
-        imgElement_me.src = "./img/win.jpg";
-        imgElement_me.width = 50;
-        imgElement_me.height = 50;
-        console.log("エラー");
-        
-        let me_win = document.querySelector("#me_win");
-        me_win.appendChild(imgElement_me);
-        console.log("エラー");
+    // 対戦相手が0～3の時は、通常じゃんけん処理）
+    if(opponent >= 0 && opponent <= 3){
+         const randomJankken = Math.floor(Math.random()*3);
+         console.log("OK");
+         if(randomJankken === 0){
+              document.querySelector("#vs").innerText = "負け";
+              youjunkkenimg.src = "./img/guu.jpg";
+              console.log("OK");
+         }else if(randomJankken === 1){
+              document.querySelector("#vs").innerText = "引き分け";
+              youjunkkenimg.src = "./img/tyoki.jpg";
+              console.log("OK");
+         }else{
+              document.querySelector("#vs").innerText = "勝ち";
+              youjunkkenimg.src = "./img/paa.jpg";
+              console.log("OK");
+         }  
+    // 相手がラオウ
+    }else if(opponent === 4){
+      document.querySelector("#vs").innerText = "負け";
+      youjunkkenimg.src = "./img/guu.jpg";
+      console.log("OK");
+    // 相手がジャギ
+    }else if(opponent === 5){
+      document.querySelector("#vs").innerText = "勝ち";
+      youjunkkenimg.src = "./img/paa.jpg";
+      console.log("OK");
     };
-}
+};
 
-// ぱーをクリックして対戦結果をアラートで表示する
+//ぱーをクリック
 const btn5 = document.querySelector("#btn5");
 btn5.onclick = function(){
     mejunkkenimg.src = "./img/paa.jpg";
-    const randomJankken = Math.floor(Math.random()*3);
-    console.log("エラー");
-
-    if(randomJankken === 0){
-        document.querySelector("#vs").innerText = "勝ち";
-        youjunkkenimg.src = "./img/guu.jpg";
-        console.log("エラー");
-
-        let imgElement_me = document.createElement("img");
-        imgElement_me.src = "./img/win.jpg";
-        imgElement_me.width = 50;
-        imgElement_me.height = 50;
-        console.log("エラー");
-        
-        let me_win = document.querySelector("#me_win");
-        me_win.appendChild(imgElement_me);
-        console.log("エラー");
-
-    }else if(randomJankken === 1){
-        document.querySelector("#vs").innerText = "負け";
-        youjunkkenimg.src = "./img/tyoki.jpg";
-        console.log("エラー");
-
-        let imgElement_you = document.createElement("img");
-        imgElement_you.src = "./img/win.jpg";
-        imgElement_you.width = 50;
-        imgElement_you.height = 50;
-        console.log("エラー");
-
-        let you_win = document.querySelector("#you_win");
-        you_win.appendChild(imgElement_you);
-        console.log("エラー");
-
-    }else{
-        document.querySelector("#vs").innerText = "引き分け";
-        youjunkkenimg.src = "./img/paa.jpg";
-        console.log("エラー");
+    // 対戦相手が0～3の時は、通常じゃんけん処理）
+    if(opponent >= 0 && opponent <= 3){
+         const randomJankken = Math.floor(Math.random()*3);
+         console.log("OK");
+         if(randomJankken === 0){
+              document.querySelector("#vs").innerText = "勝ち";
+              youjunkkenimg.src = "./img/guu.jpg";
+              console.log("OK");
+         }else if(randomJankken === 1){
+              document.querySelector("#vs").innerText = "負け";
+              youjunkkenimg.src = "./img/tyoki.jpg";
+              console.log("OK");
+         }else{
+              document.querySelector("#vs").innerText = "引き分け";
+              youjunkkenimg.src = "./img/paa.jpg";
+              console.log("OK");
+         }
+    // 相手がラオウ
+    }else if(opponent === 4){
+      document.querySelector("#vs").innerText = "負け";
+      youjunkkenimg.src = "./img/tyoki.jpg";
+      console.log("OK");
+    // 相手がジャギ
+    }else if(opponent === 5){
+      document.querySelector("#vs").innerText = "勝ち";
+      youjunkkenimg.src = "./img/guu.jpg";
+      console.log("OK");
     };
-}
+};
 
 let btn6 = document.querySelector("#btn6");
 btn6.onclick = function(){
